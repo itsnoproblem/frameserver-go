@@ -1,1 +1,4 @@
 .idea
+certs
+nginx
+docker-compose.yml

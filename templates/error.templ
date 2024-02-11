@@ -1,0 +1,17 @@
+package templates
+
+type ErrorView struct {
+    Code int
+    Message   string
+}
+
+templ ErrorFrame(view ErrorView) {
+    <html>
+        <head>
+            <title>Error</title>
+        </head>
+        <body>
+            <h1>{ view.Message }</h1>
+        </body>
+    </html>
+}

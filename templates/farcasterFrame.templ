@@ -1,0 +1,37 @@
+package templates
+
+import (
+    "fmt"
+
+    "github.com/itsnoproblem/frameserver-go/farcaster"
+)
+
+type FrameView struct {
+    Title   string
+    Frame   farcaster.Frame
+}
+
+templ FarcasterFrame(view FrameView) {
+    <html>
+        <head>
+            <title>{ view.Title }</title>
+            <meta property="og:image" content={ view.Frame.Image.URL } />
+            <meta property="fc:frame" content={ view.Frame.Version } />
+            <meta property="fc:frame:image" content={ view.Frame.Image.URL } />
+            <meta property="fc:frame:image:aspect_ratio" content={ string(view.Frame.Image.AspectRatio) } />
+
+            for index, button := range view.Frame.Buttons {
+                <meta property={ "fc:frame:button:" + fmt.Sprintf("%d", index + 1) } content={ button.Label } />
+                if button.Target != "" {
+                    <meta property={ "fc:frame:button:" + fmt.Sprintf("%d", index + 1) + ":target" } content={ button.Target } />
+                }
+                if button.Action != "" {
+                    <meta property={ "fc:frame:button:" + fmt.Sprintf("%d", index + 1) + ":action" } content={ button.Action } />
+                }
+            }
+        </head>
+        <body>
+            <img src={ view.Frame.Image.URL }/>
+        </body>
+    </html>
+}
