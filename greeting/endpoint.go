@@ -42,6 +42,7 @@ func makeInitialFrameEndpoint(svc Service) internalhttp.HandlerFunc {
 			Title: "gm farcaster!",
 			Frame: farcaster.Frame{
 				Version: "vNext",
+				PostURL: svc.AppURL() + "/post",
 				Image: farcaster.Image{
 					URL:         frameImage,
 					AspectRatio: farcaster.AspectRatio_2_1,
@@ -49,7 +50,6 @@ func makeInitialFrameEndpoint(svc Service) internalhttp.HandlerFunc {
 				Buttons: []farcaster.Button{
 					postButton,
 				},
-				PostURL: svc.AppURL() + "/post",
 			},
 		}, nil
 	}
