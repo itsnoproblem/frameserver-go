@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/itsnoproblem/frameserver-go/tile"
 	"log"
 	"net/http"
 	"os"
@@ -10,6 +9,7 @@ import (
 	"github.com/itsnoproblem/frameserver-go/greeting"
 	internalhttp "github.com/itsnoproblem/frameserver-go/http"
 	"github.com/itsnoproblem/frameserver-go/providers/hubble"
+	"github.com/itsnoproblem/frameserver-go/tile"
 )
 
 type AppConfig struct {
