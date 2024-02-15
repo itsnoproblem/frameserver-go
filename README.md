@@ -33,8 +33,8 @@ tileURL, err := tileMaker.MakeTile(tileSpec)
 ### Creating a frame:
 ```go
 frame := farcaster.Frame{
-    Version: "vNext",
-	PostURL: "https://example.com/post",
+    Version: "vNext", 
+    PostURL: "https://example.com/post",
     Image: farcaster.Image{
         URL:         "https://example.com/static/tiles/abc123.png",
         AspectRatio: farcaster.AspectRatio_2_1,
