@@ -2,12 +2,14 @@ package hubble
 
 import (
 	"context"
-	"github.com/itsnoproblem/frameserver-go/farcaster"
+
 	"github.com/pkg/errors"
+
+	"github.com/itsnoproblem/frameserver-go/farcaster"
 )
 
 const (
-	pathFormatValidateMessage = "/v1/validateMessage"
+	pathValidateMessage = "/v1/validateMessage"
 )
 
 type HTTPClient interface {
@@ -28,16 +30,11 @@ func NewProvider(client HTTPClient, endpoint string) *provider {
 
 func (p *provider) ValidateMessage(ctx context.Context, message []byte) (farcaster.Message, error) {
 	var res ValidateMessageResponse
-	url := p.endpoint + pathFormatValidateMessage
+	url := p.endpoint + pathValidateMessage
 
 	if message == nil {
 		return farcaster.Message{}, errors.New("provider.ValidateMessage: message is nil")
 	}
-
-	//encodedMessage, err := proto.Marshal(message)
-	//if err != nil {
-	//	return farcaster.Message{}, errors.Wrap(err, "provider.ValidateMessage: marshal")
-	//}
 
 	if err := p.client.PostBytes(ctx, url, message, &res); err != nil {
 		return farcaster.Message{}, errors.Wrap(err, "provider.ValidateMessage")

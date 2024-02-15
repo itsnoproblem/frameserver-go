@@ -13,9 +13,11 @@ This is a "hello world" demonstration. You will find the endpoints served by the
 
 The main package and application entrypoint are in `cmd/frameserver/main.go`.
 
+![demo tile](./static/demo-tile.png)
+
 ### Creating an image tile:
 ```go
-tileMaker, err := tile.NewTileMaker(tilesURL, outputDir, fontsDir)
+tileMaker, err := tile.Maker(tilesURL, outputDir, fontsDir)
 if err != nil {
 	log.Fatal(err)
 }

@@ -22,14 +22,15 @@ type tileMaker struct {
 	fontsDir  string
 }
 
-func NewTileMaker(tilesURL, outputDir, fontsDir string) (*tileMaker, error) {
+// Maker initializes a new tile maker.
+func Maker(tilesURL, outputDir, fontsDir string) (*tileMaker, error) {
 	info, err := os.Stat(outputDir)
 	if err != nil {
-		return nil, errors.Wrap(err, "NewTileMaker")
+		return nil, errors.Wrap(err, "Maker")
 	}
 
 	if !info.IsDir() {
-		return nil, errors.New("NewTileMaker: outputDir is not a directory")
+		return nil, errors.New("Maker: outputDir is not a directory")
 	}
 
 	return &tileMaker{
@@ -39,6 +40,7 @@ func NewTileMaker(tilesURL, outputDir, fontsDir string) (*tileMaker, error) {
 	}, nil
 }
 
+// MakeTile creates a new tile from the given spec and returns its URL.
 func (t *tileMaker) MakeTile(spec Spec) (URl string, err error) {
 	filename := fmt.Sprintf("%s.png", spec.ID())
 	outputFileName := fmt.Sprintf("%s/%s", t.outputDir, filename)

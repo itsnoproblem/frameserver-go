@@ -4,9 +4,11 @@ import (
 	"context"
 	"encoding/hex"
 	"encoding/json"
-	internalhttp "github.com/itsnoproblem/frameserver-go/http"
-	"github.com/pkg/errors"
 	"net/http"
+
+	"github.com/pkg/errors"
+
+	internalhttp "github.com/itsnoproblem/frameserver-go/http"
 )
 
 type transporter struct {

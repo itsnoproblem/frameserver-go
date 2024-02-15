@@ -1,8 +1,9 @@
 package hubble
 
 import (
-	"github.com/itsnoproblem/frameserver-go/farcaster"
 	"time"
+
+	"github.com/itsnoproblem/frameserver-go/farcaster"
 )
 
 type ValidateMessageResponse struct {

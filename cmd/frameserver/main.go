@@ -16,21 +16,20 @@ type AppConfig struct {
 	ListenPort string // "8080"
 	AppURL     string // "http://127.0.0.1:8080"
 	HubURL     string // "https://nemes.farcaster.xyz:2281"
-	StaticDir  string
+	StaticDir  string // "/path/to/static"
 }
 
 func main() {
 	config := mustLoadConfig()
-
-	webClient := internalhttp.NewClient()
-	validator := hubble.NewProvider(webClient, config.HubURL)
-
 	outputDir := fmt.Sprintf("%s/tiles", config.StaticDir)
 	fontsDir := fmt.Sprintf("%s/fonts", config.StaticDir)
-	tileMaker, err := tile.NewTileMaker(config.AppURL+"/static/tiles", outputDir, fontsDir)
+	tileMaker, err := tile.Maker(config.AppURL+"/static/tiles", outputDir, fontsDir)
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	webClient := internalhttp.NewClient()
+	validator := hubble.NewProvider(webClient, config.HubURL)
 
 	greetingService := greeting.NewService(validator, tileMaker, config.StaticDir, config.AppURL)
 	greeetingTransport := greeting.NewTransporter(internalhttp.MakeHandler, greetingService)

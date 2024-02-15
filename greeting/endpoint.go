@@ -27,7 +27,7 @@ type FrameActionRequest struct {
 func makeInitialFrameEndpoint(svc Service) internalhttp.HandlerFunc {
 	return func(ctx context.Context, request interface{}) (response interface{}, err error) {
 		postButton := farcaster.NewPostButton("reveal")
-		postButton.Target = svc.AppURL() + "/target"
+		postButton.Target = svc.AppURL() + "/target" // what even is a target?
 		frameImage, err := svc.CreateTile(ctx, tile.Spec{
 			Text:            "gm farcaster!",
 			BackgroundImage: svc.StaticDir() + "/background.jpg",
@@ -68,7 +68,7 @@ func makeReceivePostEndpoint(svc Service) internalhttp.HandlerFunc {
 		}
 
 		frameImage, err := svc.CreateTile(ctx, tile.Spec{
-			Text:            fmt.Sprintf("future is bright for FID %d!", msg.Data.FID),
+			Text:            fmt.Sprintf("got a verified click from FID %d", msg.Data.FID),
 			BackgroundImage: "https://tile.loc.gov/storage-services/service/pnp/cph/3g00000/3g06000/3g06400/3g06458r.jpg",
 			TextColor:       color.White,
 			OverlayColor:    color.RGBA{R: 0, G: 0, B: 0, A: 105},

@@ -5,6 +5,7 @@ const (
 	AspectRatio_2_1 AspectRatio = "1.9:1"
 )
 
+// Frame represents a frame to be displayed in the farcaster client.
 type Frame struct {
 	// Version (required) a valid frame version string. The string must be a release date (e.g. 2020-01-01) or vNext.
 	Version string
@@ -16,16 +17,4 @@ type Frame struct {
 	Buttons []Button
 	// PostURL is a 256-byte string which contains a valid URL to send the Signature Packet to
 	PostURL string
-}
-
-type FrameAction struct {
-	Url         string
-	ButtonIndex int
-	InputText   string
-	CastID      CastID
-}
-
-type CastID struct {
-	FID  int
-	Hash string
 }

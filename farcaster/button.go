@@ -7,6 +7,7 @@ const (
 	ActionLink         = "link"
 )
 
+// Button represents a button to  be displayed in the farcaster client.
 type Button struct {
 	// Label (required) a string to be displayed on the button
 	Label string

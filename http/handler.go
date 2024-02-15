@@ -39,8 +39,7 @@ func MakeHandler(decoder DecoderFunc, handler HandlerFunc, formatter FormatterFu
 			return
 		}
 
-		rnd := NewRenderer(ctx, http.StatusOK, cmp)
-		if err = rnd.Render(w); err != nil {
+		if err = NewRenderer(ctx, http.StatusOK, cmp).Render(w); err != nil {
 			renderError(ctx, w, err, http.StatusInternalServerError)
 		}
 	}

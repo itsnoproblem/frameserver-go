@@ -2,3 +2,4 @@
 certs
 nginx
 docker-compose.yml
+cmd/frameserver/Frame_Server
